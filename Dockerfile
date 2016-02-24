@@ -41,11 +41,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update
 #
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y puppet puppet-common puppet-el puppet-testsuite vim-puppet
 
-#
-# disable puppetmaster daemon (we are using passenger)
-#
-RUN sed -i "s/START=yes/START=no/g" /etc/default/puppetmaster
-
 #templates puppe module generate
 RUN git clone https://github.com/AtlasIT-AM/puppet-module-skeleton.git /usr/local/src/puppet-module-skeleton
 RUN bash -c 'cd /usr/local/src/puppet-module-skeleton; bash install.sh'
